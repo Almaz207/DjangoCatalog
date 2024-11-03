@@ -1,0 +1,41 @@
+[
+{
+  "model": "catalog.product",
+  "pk": 1,
+  "fields": {
+    "name": "Lenovo ideapad Gaming 3",
+    "description": "Портативные ПК от компании Lenovo",
+    "image": "",
+    "category": 1,
+    "price": 55555.5,
+    "created_at": "2024-10-28T00:28:27.780Z",
+    "updated_at": "2024-10-28T00:28:27.780Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 2,
+  "fields": {
+    "name": "Keyron WM-MX166",
+    "description": "Бюджетный конкурент MX - master 3",
+    "image": "",
+    "category": 2,
+    "price": 3224.0,
+    "created_at": "2024-10-28T00:30:59.883Z",
+    "updated_at": "2024-10-28T00:30:59.883Z"
+  }
+},
+{
+  "model": "catalog.product",
+  "pk": 3,
+  "fields": {
+    "name": "Edifier WH700NB",
+    "description": "Универсальные наушники для спорта и отдыха с активным шумоподавлением",
+    "image": "",
+    "category": 3,
+    "price": 4400.99,
+    "created_at": "2024-10-28T00:33:46.767Z",
+    "updated_at": "2024-10-28T00:33:46.767Z"
+  }
+}
+]

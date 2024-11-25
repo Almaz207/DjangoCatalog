@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary" >
+                                {% if object %}
+                                    Сохранить
+                                {% else %}
+                                    Создать
+                                {% endif %}
+                            </button>
+                            <a class="btn btn-success" href="{% url 'blog:record_list' %}" role="button">Назад</a>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

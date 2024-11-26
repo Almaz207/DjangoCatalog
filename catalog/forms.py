@@ -13,31 +13,35 @@ class ProductForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
 
+        self.fields['name'].help_text = None
         self.fields['name'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Введите название',
         })
 
+        self.fields['description'].help_text = None
         self.fields['description'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Введите описание',
         })
 
+        self.fields['image'].help_text = None
         self.fields['image'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Можете добавить фото',
         })
 
+        self.fields['category'].help_text = None
         self.fields['category'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'Укажите категорию',
         })
 
+        self.fields['price'].help_text = None
         self.fields['price'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': 'укажите цену продукта',
         })
-
 
     def clean_price(self):
         price = self.cleaned_data.get('price')

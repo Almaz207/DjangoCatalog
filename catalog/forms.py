@@ -43,6 +43,13 @@ class ProductForm(ModelForm):
             'placeholder': 'укажите цену продукта',
         })
 
+        self.fields['is_active'].help_text = None
+        self.fields['is_active'].widget.attrs.update({
+            'placeholder': 'Товар опубликован',
+        })
+
+
+
     def clean_price(self):
         price = self.cleaned_data.get('price')
         if price <= 0:
@@ -57,3 +64,9 @@ class ProductForm(ModelForm):
         for word in bad_words:
             if word in name.lower() or word in description.lower():
                 self.add_error('name', f"Слово находится в списке запрещённых слов{bad_words}")
+
+
+class ProductModeratorForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ('name', 'is_active')

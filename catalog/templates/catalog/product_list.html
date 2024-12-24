@@ -1,10 +1,23 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Album example</h1>
+            <p class="lead text-body-secondary">Добро пожаловать {{user.username}}!</p>
+            <p>
+                <a href="{% url 'catalog:create_product' %}" class="btn btn-primary my-2">Добавить продукт</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+        </div>
+    </div>
+</section>
 <div class="album py-5 bg-body-tertiary">
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {% for product in object_list %}
+            {% if product.is_active %}
             <div class="col">
                 <div class="card shadow-sm">
                     <img src="{{ product.image | media_filter }}">
@@ -14,16 +27,18 @@
                             <div class="btn-group">
                                 <a class="btn btn-primary" href="{%url 'catalog:products_detail' product.pk %}"
                                    role="button">Посмотреть</a>
+                                {%if perm.catalog.change_product or user == product.owner%}
                                 <a class="btn btn-primary" href="{% url 'catalog:product_update' product.pk %}"
                                    role="button">Редактировать</a>
                                 <a class="btn btn-primary" href="{% url 'catalog:product_delete' product.pk %}"
                                    role="button">Удалить</a>
+                                {%endif%}
                             </div>
-                            <small class="text-body-secondary">9 mins</small>
                         </div>
                     </div>
                 </div>
             </div>
+            {%endif%}
             {% endfor %}
         </div>
     </div>

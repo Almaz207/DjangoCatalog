@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import CustomUser
 
 
 class Category(models.Model):
@@ -21,6 +22,8 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='Цена', help_text='Укажите цену продукта')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=False, verbose_name='Опубликован')
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name} '
@@ -29,3 +32,6 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ['category', 'name']
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
+        ]

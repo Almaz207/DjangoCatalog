@@ -1,0 +1,11 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+<div class="list-group">
+    <li class="list-group-item active" aria-current="true">Категории</li>
+    {%for category in object_list %}
+    <a href="{% url 'catalog:detail_category' category.pk %}" class="list-group-item list-group-item-action">{{category.name}}</a>
+    {% endfor %}
+</div>
+{% endblock %}

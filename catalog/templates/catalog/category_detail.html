@@ -1,0 +1,12 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">{{object.category}}</li>
+    {%for product in object_list %}
+    <li class="list-group-item">{{product.name}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

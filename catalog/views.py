@@ -5,7 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
+from catalog.models import Product, Category
+from catalog.services import get_list_product_in_category
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):
@@ -50,3 +51,35 @@ class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     template_name = "catalog/product_confirm_delete.html"
     success_url = reverse_lazy('catalog:catalog_list')
     permission_required = 'catalog.delete_product'
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = "catalog/list_category.html"
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = "catalog/category_detail.html"
+
+    def get_queryset(self):
+        category_ids = self.kwargs.get('pk')
+        # print(category_ids)
+        return get_list_product_in_category(category_id=category_ids)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['object_list'] = self.get_queryset()
+        return context
+
+
+"""https://github.com/HHHMHA/django-roadmap
+20:09
+https://github.com/faresemad/Django-Roadmap
+20:10
+https://obsidian.md/
+20:14
+https://ccbv.co.uk/
+20:24
+"""
+# обратиться ко всем категориям в текущем контроллере категори лист вью в контексте будет категория обджек

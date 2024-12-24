@@ -137,3 +137,12 @@ bad_words = ["казино", "криптовалюта", "крипта", "бир
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'catalog:catalog_list'
 LOGIN_URL = 'users:login'
+
+CACHE_ENABLED = True
+if CACHE_ENABLED:
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+            'LOCATION': 'redis://127.0.0.1:6379/1',
+        }
+    }
